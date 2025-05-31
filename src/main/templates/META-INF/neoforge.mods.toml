@@ -32,3 +32,17 @@ type="required"
 versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="trimmed"
+type="required"
+versionRange="[${trimmed_version},)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="terrablender"
+type="required"
+versionRange="[${terrablender_version},)"
+ordering="NONE"
+side="BOTH"
