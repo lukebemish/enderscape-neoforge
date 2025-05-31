@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:kurodite_brick_slab_from_polished_kurodite_stonecutting"
+      "enderscape:kurodite_brick_slab_from_polished_kurodite_stonecutting"
     ]
   }
 }

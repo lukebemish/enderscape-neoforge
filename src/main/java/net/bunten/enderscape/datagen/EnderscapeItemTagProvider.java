@@ -30,6 +30,8 @@ public class EnderscapeItemTagProvider extends ItemTagsProvider {
         tag(AVERAGE_MAGNETISM_WHEN_WORN).add(IRON_HELMET, IRON_CHESTPLATE, IRON_LEGGINGS, IRON_BOOTS);
         tag(STRONG_MAGNETISM_WHEN_WORN);
         tag(POWERS_MAGNIA_WHEN_MINED_WITH);
+        
+        tag(TRIM_TEMPLATES).add(STASIS_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 
         tag(DRIFTER_FOOD).add(CHORUS_FRUIT, FLANGER_BERRY.get());
         tag(ELYTRA_ENCHANTABLE).add(ELYTRA);

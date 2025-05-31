@@ -77,7 +77,6 @@ public class Enderscape {
                 EnderscapeParticles.class,
                 EnderscapeEnchantmentEffectComponents.class,
                 EnderscapeMobEffects.class,
-                EnderscapeAssetModifications.class,
                 EnderscapeEntities.class,
                 EnderscapeSubEntityPredicates.class,
                 EnderscapeStats.class,
@@ -110,6 +109,6 @@ public class Enderscape {
     }
     
     private void registerClientResourcePack(AddPackFindersEvent event, ResourceLocation id, Component name) {
-        event.addPackFinders(id.withPrefix("resourcepacks"), PackType.CLIENT_RESOURCES, name, PackSource.BUILT_IN, true, Pack.Position.TOP);
+        event.addPackFinders(id.withPrefix("resourcepacks/"), PackType.SERVER_DATA, name, PackSource.DEFAULT, false, Pack.Position.TOP);
     }
 }

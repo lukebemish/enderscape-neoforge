@@ -46,6 +46,7 @@ public class Rubblemite extends Monster {
     public static final int DASHING_FLAG = 2;
 
     private static final EntityDataAccessor<Integer> RUBBLEMITE_FLAGS = SynchedEntityData.defineId(Rubblemite.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> VARIANT_DATA = SynchedEntityData.defineId(Rubblemite.class, EntityDataSerializers.INT);
 
     public Rubblemite(EntityType<? extends Rubblemite> type, Level world) {
         super(type, world);
@@ -109,7 +110,7 @@ public class Rubblemite extends Monster {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(RUBBLEMITE_FLAGS, DEFAULT_FLAG);
-        builder.define(RubblemiteVariant.DATA, RubblemiteVariant.END_STONE.getId());
+        builder.define(VARIANT_DATA, RubblemiteVariant.END_STONE.getId());
     }
 
     @Override

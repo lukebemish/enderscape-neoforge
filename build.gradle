@@ -20,6 +20,17 @@ repositories {
             includeModule 'com.github.glitchfiend', 'TerraBlender-neoforge'
         }
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 base {
@@ -67,11 +78,7 @@ configurations {
 }
 
 dependencies {
-    implementation('dev.lukebemish:dynamicassetgenerator:6.1.2') {
-        capabilities {
-            requireCapability('dev.lukebemish:dynamicassetgenerator-neoforge')
-        }
-    }
+    implementation("maven.modrinth:trimmed:1.21-3.0.0+neoforge")
     implementation 'com.github.glitchfiend:TerraBlender-neoforge:1.21.1-4.1.0.8'
 }
 

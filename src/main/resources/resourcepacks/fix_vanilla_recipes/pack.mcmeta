@@ -3,10 +3,18 @@
         "description": {
             "translate": "pack.enderscape.fix_vanilla_recipes.description"
         },
-        "pack_format": 46,
+        "pack_format": 48,
         "supported_formats": {
-          "min_inclusive": 46,
+          "min_inclusive": 48,
           "max_inclusive": 9999
         }
+    },
+    "filter": {
+        "block": [
+            {
+                "namespace": "minecraft",
+                "path": "recipe/end_stone_bricks.json"
+            }
+        ]
     }
 }

@@ -464,7 +464,13 @@ public class EnderscapeRecipeProvider extends RecipeProvider {
                                     }
                                 }
                                 builder.requirements(modifiedAdvancement.requirements());
-                                builder.rewards(modifiedAdvancement.rewards());
+                                var rewards = new AdvancementRewards.Builder();
+                                rewards.addExperience(modifiedAdvancement.rewards().experience());
+                                for (var lootTable : modifiedAdvancement.rewards().loot()) {
+                                    rewards.addLootTable(lootTable);
+                                }
+                                rewards.addRecipe(location);
+                                builder.rewards(rewards.build());
                                 
                                 modifiedAdvancement = builder.build(advancement.id()).value();
                                 list.add(

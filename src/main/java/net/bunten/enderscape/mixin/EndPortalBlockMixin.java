@@ -22,7 +22,7 @@ public abstract class EndPortalBlockMixin extends BaseEntityBlock {
     @ModifyArgs(method = "animateTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;addParticle(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V"))
     private void Enderscape$ReplaceParticles(Args args) {
         if (EnderscapeConfig.getInstance().endPortalUpdateParticles.get()) {
-            args.set(0, EnderscapeParticles.END_PORTAL_STARS);
+            args.set(0, EnderscapeParticles.END_PORTAL_STARS.get());
             args.set(2, ((double) args.get(2)) + 0.2);
             args.set(5, 0.0185);
         }

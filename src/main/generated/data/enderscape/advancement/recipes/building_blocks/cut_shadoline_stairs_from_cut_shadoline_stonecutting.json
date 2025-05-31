@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:cut_shadoline_stairs_from_cut_shadoline_stonecutting"
+      "enderscape:cut_shadoline_stairs_from_cut_shadoline_stonecutting"
     ]
   }
 }

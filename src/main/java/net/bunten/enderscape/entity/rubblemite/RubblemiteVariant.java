@@ -26,7 +26,6 @@ public enum RubblemiteVariant implements StringRepresentable {
     VERADITE(2, "veradite", EnderscapeBlocks.VERADITE, 1, EnderscapeBiomeTags.DOES_NOT_SPAWN_VERADITE_RUBBLEMITES),
     KURODITE(3, "kurodite", EnderscapeBlocks.KURODITE, 1, EnderscapeBiomeTags.DOES_NOT_SPAWN_KURODITE_RUBBLEMITES);
 
-    public static final EntityDataAccessor<Integer> DATA = SynchedEntityData.defineId(Rubblemite.class, EntityDataSerializers.INT);
     public static final String KEY = "RubblemiteVariant";
 
     public static final Codec<RubblemiteVariant> CODEC = StringRepresentable.fromEnum(RubblemiteVariant::values);
@@ -76,11 +75,11 @@ public enum RubblemiteVariant implements StringRepresentable {
     }
 
     public static RubblemiteVariant get(Rubblemite mob) {
-        return RubblemiteVariant.BY_ID[mob.getEntityData().get(DATA)];
+        return RubblemiteVariant.BY_ID[mob.getEntityData().get(Rubblemite.VARIANT_DATA)];
     }
 
     public static void set(Rubblemite mob, RubblemiteVariant variant) {
-        mob.getEntityData().set(DATA, variant.getId());
+        mob.getEntityData().set(Rubblemite.VARIANT_DATA, variant.getId());
     }
 
     public static RubblemiteVariant pickForSpawning(RandomSource random, Holder<Biome> biome) {

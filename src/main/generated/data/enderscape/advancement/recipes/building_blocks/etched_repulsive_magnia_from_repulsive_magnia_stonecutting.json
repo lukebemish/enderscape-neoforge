@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:etched_repulsive_magnia_from_repulsive_magnia_stonecutting"
+      "enderscape:etched_repulsive_magnia_from_repulsive_magnia_stonecutting"
     ]
   }
 }
