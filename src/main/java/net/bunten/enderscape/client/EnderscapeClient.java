@@ -28,12 +28,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 import org.jetbrains.annotations.Nullable;
 
@@ -61,10 +64,12 @@ public class EnderscapeClient {
         HUD_ELEMENTS.add(element);
 	}
     
-    public EnderscapeClient(IEventBus modBus) {
+    public EnderscapeClient(IEventBus modBus, ModContainer container) {
         Reflection.initialize(
                 EnderscapeHudElements.class
         );
+
+        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         
         modBus.addListener(EntityRenderersEvent.RegisterLayerDefinitions.class, event -> {
             event.registerLayerDefinition(EnderscapeEntityRenderData.DRIFTER, DrifterModel::createLayer);
