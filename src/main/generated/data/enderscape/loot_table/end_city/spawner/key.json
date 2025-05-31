@@ -12,5 +12,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "enderscape:end_city/spawner/key"
 }

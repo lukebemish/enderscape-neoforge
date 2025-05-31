@@ -89,5 +89,6 @@
         "min": 1.0
       }
     }
-  ]
+  ],
+  "random_sequence": "enderscape:end_city/spawner/basic"
 }

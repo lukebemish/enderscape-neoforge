@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:chiseled_veradite_from_polished_veradite_stonecutting"
+        "recipe": "enderscape:chiseled_veradite_from_polished_veradite_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:purpur_wall_from_purpur_block_stonecutting"
+        "recipe": "enderscape:purpur_wall_from_purpur_block_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

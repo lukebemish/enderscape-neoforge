@@ -515,5 +515,6 @@
         "min": 3.0
       }
     }
-  ]
+  ],
+  "random_sequence": "enderscape:end_city/chest"
 }

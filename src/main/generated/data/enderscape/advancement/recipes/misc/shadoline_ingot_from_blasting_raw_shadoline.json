@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:shadoline_ingot_from_blasting_raw_shadoline"
+        "recipe": "enderscape:shadoline_ingot_from_blasting_raw_shadoline"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

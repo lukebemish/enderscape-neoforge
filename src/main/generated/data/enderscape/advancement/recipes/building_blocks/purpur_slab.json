@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:purpur_slab"
+        "recipe": "enderscape:purpur_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

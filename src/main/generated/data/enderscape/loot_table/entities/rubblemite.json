@@ -52,7 +52,7 @@
                   "entity": "this",
                   "predicate": {
                     "type_specific": {
-                      "type": "minecraft:rubblemite",
+                      "type": "enderscape:rubblemite",
                       "variant": "end_stone"
                     }
                   }
@@ -68,7 +68,7 @@
                   "entity": "this",
                   "predicate": {
                     "type_specific": {
-                      "type": "minecraft:rubblemite",
+                      "type": "enderscape:rubblemite",
                       "variant": "mirestone"
                     }
                   }
@@ -84,7 +84,7 @@
                   "entity": "this",
                   "predicate": {
                     "type_specific": {
-                      "type": "minecraft:rubblemite",
+                      "type": "enderscape:rubblemite",
                       "variant": "veradite"
                     }
                   }
@@ -100,7 +100,7 @@
                   "entity": "this",
                   "predicate": {
                     "type_specific": {
-                      "type": "minecraft:rubblemite",
+                      "type": "enderscape:rubblemite",
                       "variant": "kurodite"
                     }
                   }
@@ -113,5 +113,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "enderscape:entities/rubblemite"
 }

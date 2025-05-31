@@ -192,5 +192,6 @@
         "min": 2.0
       }
     }
-  ]
+  ],
+  "random_sequence": "enderscape:mirestone_ruins/chest"
 }
