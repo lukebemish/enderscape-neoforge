@@ -62,7 +62,7 @@ public class NebuliteToolHud extends HudElement {
     private int cost;
 
     public void render(GuiGraphics graphics, DeltaTracker delta) {
-        if (!config.nebuliteToolHudEnabled.get() || client.player == null || client.options.hideGui || totalAlpha <= 0.01F || !client.options.getCameraType().isFirstPerson() || client.player.isSpectator()) {
+        if (!config.nebuliteToolHudEnabled.get() || Minecraft.getInstance().player == null || Minecraft.getInstance().options.hideGui || totalAlpha <= 0.01F || !Minecraft.getInstance().options.getCameraType().isFirstPerson() || Minecraft.getInstance().player.isSpectator()) {
             return;
         }
 
@@ -135,7 +135,7 @@ public class NebuliteToolHud extends HudElement {
     }
 
     public void tick() {
-        Player player = client.player;
+        Player player = Minecraft.getInstance().player;
         if (player == null) return;
 
         ItemStack stack = NebuliteToolItem.is(player.getMainHandItem()) ? player.getMainHandItem() : player.getOffhandItem();

@@ -5,6 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.bunten.enderscape.Enderscape;
 import net.bunten.enderscape.client.EnderscapeClient;
 import net.minecraft.client.DeltaTracker;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -20,13 +21,13 @@ public class MirrorScreenEffect extends HudElement {
     }
 
     public void render(GuiGraphics graphics, DeltaTracker delta) {
-        if (client.player == null || client.options.hideGui || !client.options.getCameraType().isFirstPerson() || client.player.isSpectator() || EnderscapeClient.postMirrorUseTicks <= 0 || !config.mirrorScreenEffectEnabled.getAsBoolean()) {
+        if (Minecraft.getInstance().player == null || Minecraft.getInstance().options.hideGui || !Minecraft.getInstance().options.getCameraType().isFirstPerson() || Minecraft.getInstance().player.isSpectator() || EnderscapeClient.postMirrorUseTicks <= 0 || !config.mirrorScreenEffectEnabled.getAsBoolean()) {
             return;
         }
         
         graphics.pose().pushPose();
 
-        float light = Math.max(0.3F, client.level.getBrightness(LightLayer.SKY, client.player.blockPosition()) / 15.0F);
+        float light = Math.max(0.3F, Minecraft.getInstance().level.getBrightness(LightLayer.SKY, Minecraft.getInstance().player.blockPosition()) / 15.0F);
         float overlayAlpha = Mth.clamp((EnderscapeClient.postMirrorUseTicks / 40.0F) * (config.mirrorScreenEffectOverlayIntensity.getAsInt() / 100.0F) * light, 0.0F, 1.0F);
         float vignetteAlpha = Mth.clamp((EnderscapeClient.postMirrorUseTicks / 60.0F) * (config.mirrorScreenEffectVignetteIntensity.getAsInt() / 100.0F) * light, 0.0F, 1.0F);
 
@@ -52,6 +53,6 @@ public class MirrorScreenEffect extends HudElement {
 
     public void tick() {
         super.tick();
-        if (EnderscapeClient.postMirrorUseTicks > 0 && !client.isPaused()) EnderscapeClient.postMirrorUseTicks--;
+        if (EnderscapeClient.postMirrorUseTicks > 0 && !Minecraft.getInstance().isPaused()) EnderscapeClient.postMirrorUseTicks--;
     }
 }

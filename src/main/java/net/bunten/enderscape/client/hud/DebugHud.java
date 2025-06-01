@@ -8,6 +8,7 @@ import net.bunten.enderscape.EnderscapeConfig;
 import net.bunten.enderscape.client.EnderscapeClient;
 import net.bunten.enderscape.client.mixin.MusicManagerAccess;
 import net.minecraft.client.DeltaTracker;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
@@ -55,9 +56,9 @@ public class DebugHud extends HudElement {
         List<String> list = Lists.newArrayList();
 
         list.add("Client");
-        list.add("  fps: " + client.getFps());
-        list.add("  guiScale: " + client.options.guiScale().get());
-        list.add("  renderDistance: " + client.options.renderDistance().get());
+        list.add("  fps: " + Minecraft.getInstance().getFps());
+        list.add("  guiScale: " + Minecraft.getInstance().options.guiScale().get());
+        list.add("  renderDistance: " + Minecraft.getInstance().options.renderDistance().get());
         list.add("  postMirrorUseTicks: " + EnderscapeClient.postMirrorUseTicks);
 
         return list;
@@ -66,30 +67,30 @@ public class DebugHud extends HudElement {
     private List<String> getMusicInfo() {
         List<String> list = Lists.newArrayList();
 
-        MusicManagerAccess access = (MusicManagerAccess) (client.getMusicManager());
+        MusicManagerAccess access = (MusicManagerAccess) (Minecraft.getInstance().getMusicManager());
         var current = access.getCurrentMusic();
 
         list.add("Music");
-        list.add("  Volume: " + (int) ((client.options.getSoundSourceVolume(SoundSource.MUSIC)) * 100) + "%");
-        list.add("  Playing: " + client.getSoundManager().isActive(current));
+        list.add("  Volume: " + (int) ((Minecraft.getInstance().options.getSoundSourceVolume(SoundSource.MUSIC)) * 100) + "%");
+        list.add("  Playing: " + Minecraft.getInstance().getSoundManager().isActive(current));
         list.add("  Current event: " + (current != null ? shorten(current.getLocation().getPath(), ".") : "null"));
         list.add("  Current track: " + (current != null ? shorten(current.getSound().getPath().getPath(), "/") : "null"));
-        Music music = client.getSituationalMusic();
-        list.add("  Next event: " + shorten(client.getSituationalMusic().getEvent().value().getLocation().getPath(), "."));
+        Music music = Minecraft.getInstance().getSituationalMusic();
+        list.add("  Next event: " + shorten(Minecraft.getInstance().getSituationalMusic().getEvent().value().getLocation().getPath(), "."));
         list.add("    getMinDelay: " + music.getMinDelay());
         list.add("    getMaxDelay: " + music.getMaxDelay());
         list.add("    replaceCurrentMusic: " + music.replaceCurrentMusic());
-        list.add("  Playing next event: " + client.getMusicManager().isPlayingMusic(music));
+        list.add("  Playing next event: " + Minecraft.getInstance().getMusicManager().isPlayingMusic(music));
         list.add("  Delay: " + access.getNextSongDelay() + " (" + String.format("%02d", access.getNextSongDelay() / 20 / 60) + ":" + String.format("%02d", (access.getNextSongDelay() / 20) % 60) + ")");
 
         return list;
     }
 
     private List<String> getPlayerInfo() {
-        LocalPlayer player = client.player;
+        LocalPlayer player = Minecraft.getInstance().player;
         List<String> list = Lists.newArrayList();
 
-        if (client.level != null && player != null) {
+        if (Minecraft.getInstance().level != null && player != null) {
             Vec3 vel;
             if (player.isPassenger()) {
                 vel = Objects.requireNonNull(player.getVehicle()).getDeltaMovement();
@@ -134,7 +135,7 @@ public class DebugHud extends HudElement {
     }
 
     public void render(GuiGraphics graphics, DeltaTracker delta) {
-        if (client.player == null || client.getDebugOverlay().showDebugScreen() || client.options.hideGui || !EnderscapeConfig.getInstance().debugHudEnabled.getAsBoolean()) return;
+        if (Minecraft.getInstance().player == null || Minecraft.getInstance().getDebugOverlay().showDebugScreen() || Minecraft.getInstance().options.hideGui || !EnderscapeConfig.getInstance().debugHudEnabled.getAsBoolean()) return;
 
         graphics.pose().pushPose();
 
@@ -143,7 +144,7 @@ public class DebugHud extends HudElement {
         RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         RenderSystem.setShaderColor(1, 1, 1, 1);
 
-        float total = switch(client.options.guiScale().get()){
+        float total = switch(Minecraft.getInstance().options.guiScale().get()){
             case 3 -> 0.6666F;
             case 4 -> 0.5F;
             default -> 1;
@@ -157,11 +158,11 @@ public class DebugHud extends HudElement {
         for (List<String> list : getDebugText().keySet()) {
             if (!getDebugText().get(list)) continue;
 
-            graphics.fill(x, y, x + client.font.width(getLongestString(list)) + 10, y + (list.size() * 12) + 4, 0x4F052E60);
+            graphics.fill(x, y, x + Minecraft.getInstance().font.width(getLongestString(list)) + 10, y + (list.size() * 12) + 4, 0x4F052E60);
 
             for (String string : list) {
                 if (!string.isEmpty()) {
-                    graphics.drawString(client.font, string, x + 4, y + 4, 0xEFFFFFFF);
+                    graphics.drawString(Minecraft.getInstance().font, string, x + 4, y + 4, 0xEFFFFFFF);
                 }
                 y += 12;
             }

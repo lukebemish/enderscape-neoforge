@@ -32,16 +32,13 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 @Mixin(LevelRenderer.class)
 public abstract class LevelRendererMixin {
 
-    @Unique
-    private static final Minecraft client = Minecraft.getInstance();
-
     @Shadow
     private ClientLevel level;
 
     @Inject(method = "renderEndSky", at = @At("HEAD"), cancellable = true)
     public void renderEndSky(PoseStack pose, CallbackInfo ci) {
         if (EnderscapeConfig.getInstance().skyboxUpdateEnabled.getAsBoolean())  {
-            EnderscapeSkybox.render(pose, level, client.gameRenderer.getMainCamera(), client.getTimer());
+            EnderscapeSkybox.render(pose, level, Minecraft.getInstance().gameRenderer.getMainCamera(), Minecraft.getInstance().getTimer());
             ci.cancel();
         }
     }
