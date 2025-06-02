@@ -42,7 +42,7 @@ side="BOTH"
 
 [[dependencies.${mod_id}]]
 modId="terrablender"
-type="required"
+type="optional"
 versionRange="[${terrablender_version},)"
 ordering="NONE"
 side="BOTH"
