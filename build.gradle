@@ -83,7 +83,7 @@ configurations {
 
 dependencies {
     implementation("maven.modrinth:trimmed:1.21-${trimmed_version}+neoforge")
-    implementation("com.github.glitchfiend:TerraBlender-neoforge:1.21.1-${terrablender_version}")
+    compileOnly("com.github.glitchfiend:TerraBlender-neoforge:1.21.1-${terrablender_version}")
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

@@ -1,6 +1,7 @@
 package net.bunten.enderscape;
 
 import com.google.common.reflect.Reflection;
+import net.bunten.enderscape.compat.EnderscapeTerrablender;
 import net.bunten.enderscape.datagen.EnderscapeBiomeModifiers;
 import net.bunten.enderscape.registry.*;
 import net.minecraft.core.Holder;
@@ -13,18 +14,15 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import terrablender.api.EndBiomeRegistry;
-
-import java.util.function.Supplier;
 
 @Mod(Enderscape.MOD_ID)
 public class Enderscape {
@@ -50,13 +48,6 @@ public class Enderscape {
     public static Holder<SoundEvent> registerSoundEventHolder(String name) {
         ResourceLocation location = id(name);
         return RegistryHelper.registerForHolder(BuiltInRegistries.SOUND_EVENT, location, () -> SoundEvent.createVariableRangeEvent(location));
-    }
-
-    private static void addBiomeForVanillaWorldgen(ResourceKey<Biome> key, double doubleWeight) {
-        int weight = (int) Math.round(doubleWeight * 10);
-        EndBiomeRegistry.registerHighlandsBiome(key, weight);
-        EndBiomeRegistry.registerMidlandsBiome(key, weight);
-        EndBiomeRegistry.registerEdgeBiome(key, weight);
     }
 
     public Enderscape(IEventBus modBus, ModContainer modContainer) {
@@ -92,11 +83,10 @@ public class Enderscape {
                 EnderscapeBiomeModifiers.class,
                 EnderscapeDataAttachments.class
         );
-
-        addBiomeForVanillaWorldgen(EnderscapeBiomes.MAGNIA_CRAGS, 0.8);
-        addBiomeForVanillaWorldgen(EnderscapeBiomes.VEILED_WOODLANDS, 0.7);
-        addBiomeForVanillaWorldgen(EnderscapeBiomes.CORRUPT_BARRENS, 0.5);
-        addBiomeForVanillaWorldgen(EnderscapeBiomes.CELESTIAL_GROVE, 0.3);
+        
+        if (ModList.get().isLoaded("terrablender")) {
+            EnderscapeTerrablender.initialize();
+        }
 
         modBus.addListener(AddPackFindersEvent.class, event -> {
             registerClientResourcePack(event, Enderscape.id("fix_levitation_advancement"), Component.translatable("pack.enderscape.fix_levitation_advancement"));
